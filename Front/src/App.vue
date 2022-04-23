@@ -1,29 +1,50 @@
 <template>
-  <HomePage/>
-  <FooterPage/>
-
+    <Header/>
+    <div class="p-content">
+        <Menu/>
+        <div class="p-page">
+            <HomePage/>
+        </div>
+    </div>
 </template>
 
 <script>
-import FooterPage from './components/FooterPage.vue'
-import HomePage from './components/HomePage.vue'
+    import Header from './layout/Header.vue'
+    import Menu from './layout/Menu.vue'
+    import HomePage from './routes/HomePage.vue'
 
-export default {
-  name: 'App',
-  components: {
-    HomePage,
-    FooterPage
-  }
-}
+    export default {
+        name: 'App',
+        components: {
+            Header,
+            Menu,
+            HomePage
+        }
+    }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+    html {
+        height: 100%;
+    }
+    body {
+        margin:  0px;
+        height: 100%;
+    }
+    #app {
+        font-family: Avenir, Helvetica, Arial, sans-serif;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
+    }
+    .p-content {
+        display: flex;
+        flex: 1;
+        overflow: auto;
+    }
+    .p-page {
+        overflow-y: scroll;
+        flex: 1;
+    }
 </style>
