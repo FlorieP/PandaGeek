@@ -11,7 +11,7 @@
 <script>
     import Header from './layout/Header.vue'
     import Menu from './layout/Menu.vue'
-    import HomePage from './routes/HomePage.vue'
+    import HomePage from './views/HomePage.vue'
 
     export default {
         name: 'App',
