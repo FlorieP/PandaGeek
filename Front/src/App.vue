@@ -1,11 +1,11 @@
 <template>
     <Header/>
-    <div class="p-content">
-        <Menu/>
-        <div class="p-page">
-            <HomePage/>
+        <div class="p-content">
+            <Menu/>
+            <div class="p-page">
+                <router-view />
+            </div>
         </div>
-    </div>
 </template>
 
 <script>
