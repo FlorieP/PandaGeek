@@ -3,12 +3,14 @@
         <IconButton
             icon="fa-bars"
             color="white"
+            @click="handleMenuClick()"
         />
         <IconButton
             icon="fa-home"
             color="white"
+            @click="handleHomeClick()"
         />
-        <div class="p-header-title">
+        <div class="p-header-title p-audiowide">
             PandaGeek
         </div>
     </div>
@@ -21,8 +23,18 @@
         name: 'PlaygroungPage',
         components: {
             IconButton
-        }
+        },
+        methods: {
+            handleMenuClick: function () {
+                this.$store.dispatch("menu/toggle")
+            },
+            handleHomeClick: function () {
+                this.$router.push("/");
+            },
+
+        },
     }
+
 </script>
 
 <style scoped>
@@ -36,7 +48,6 @@
     .p-header-title {
         color: white;
         padding: 0px 10px;
-        font-family: 'Audiowide', cursive;
         font-size: 1.75em;
         text-align: center;
         flex: 1;

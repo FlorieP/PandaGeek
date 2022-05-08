@@ -1,5 +1,5 @@
 <template>
-    <h1>Playground 🐼🎮</h1>
+    <h1 class="p-audiowide" >Playground 🐼🎮</h1>
     <IconButton/>
 </template>
 
@@ -17,6 +17,5 @@
 <style scoped>
 h1 {
     text-align: center;
-    font-family: 'Audiowide', cursive;
 }
 </style>

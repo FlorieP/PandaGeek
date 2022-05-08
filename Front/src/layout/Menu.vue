@@ -1,5 +1,5 @@
 <template>
-    <div class="p-menu">
+    <div class="p-menu" v-if="open" >
         <div class="p-menu-item" @click="handleMenuItemClick">
             Playground
         </div>    
@@ -7,7 +7,14 @@
 </template>
 
 <script>
+//Importation module Vuex
+//import { mapState } from 'vuex'
 export default { 
+    computed: {
+        open() {
+            return this.$store.state.menu.open
+        }
+    },
     methods: {
         //Fonction de modification du profil
         handleMenuItemClick: function () {

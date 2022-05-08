@@ -6,9 +6,8 @@ const state = () => ({
 const actions = {
 
     toggle ({ state, commit }) {
-        console.log('hello')
         commit('setOpen', !state.open)
-        return 'cheese'
+        return
     }
 
 }

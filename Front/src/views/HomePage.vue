@@ -1,5 +1,5 @@
 <template>
-    <h1>Bienvenue chez les 🐼🎮</h1>
+    <h1 class="p-audiowide" >Bienvenue chez les 🐼🎮</h1>
 </template>
 
 <script>
@@ -9,6 +9,5 @@
 <style scoped>
 h1 {
     text-align: center;
-    font-family: 'Audiowide', cursive;
 }
 </style>

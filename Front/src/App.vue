@@ -48,4 +48,7 @@
         overflow-y: scroll;
         flex: 1;
     }
+    .p-audiowide {
+        font-family: 'Audiowide', cursive;
+    }
 </style>
