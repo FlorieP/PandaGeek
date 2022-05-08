@@ -24,6 +24,7 @@
 </script>
 
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
     html {
         height: 100%;
     }

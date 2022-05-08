@@ -13,7 +13,7 @@
         name: 'IconButton',
         data() {
             return {
-                faClass: 'fas',
+                faClass: 'fa-solid',
             }
         },
         computed: {

@@ -35,7 +35,10 @@
     }
     .p-header-title {
         color: white;
-        font-weight: bold;
         padding: 0px 10px;
+        font-family: 'Audiowide', cursive;
+        font-size: 1.75em;
+        text-align: center;
+        flex: 1;
     }
 </style>
