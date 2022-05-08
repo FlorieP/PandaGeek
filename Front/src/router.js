@@ -4,6 +4,8 @@ import { createWebHistory, createRouter } from "vue-router";
 //Importation des routes
 import HomePage from "@/views/pages/HomePage.vue";
 import PlaygroundPage from "@/views/pages/PlaygroundPage.vue";
+import ProfilePage from "@/views/pages/ProfilePage.vue";
+import LoginPage from "@/views/pages/LoginPage.vue";
 
 //Création du tableau de routes
 const routes = [
@@ -17,6 +19,16 @@ const routes = [
     name: 'playground',
     path: '/playground',
     component: PlaygroundPage,
+  },
+  {
+    name: 'profile',
+    path: '/profile',
+    component: ProfilePage,
+  },
+  {
+    name: 'login',
+    path: '/login',
+    component: LoginPage,
   },
 ]
 

@@ -1,6 +1,6 @@
 <template>
     <div class="p-icon-button">
-        <i :class="[faClass, icon]"></i>
+        <i :class="['fa-solid', icon]" :style="[iconStyle]"></i>
     </div>    
 </template>
 
@@ -11,17 +11,12 @@
             'color'
         ],
         name: 'IconButton',
-        data() {
-            return {
-                faClass: 'fa-solid',
-            }
-        },
         computed: {
-            cssProps() {
+            iconStyle () {
                 return {
-                    'icon-color': (this.props.color) ? this.props.color : 'black',
+                    color : (this.color) ? this.color : "black",
                 }
-            },
+            }
         }
     }
 </script>
@@ -40,7 +35,6 @@
     cursor: pointer;
 }
 .p-icon-button i {
-    color: var(icon-color);
     width: 100%;
     text-align: center;
 }

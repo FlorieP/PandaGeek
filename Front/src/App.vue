@@ -45,8 +45,30 @@
     .p-page {
         overflow-y: scroll;
         flex: 1;
+        padding: 20px;
     }
     .p-audiowide {
         font-family: 'Audiowide', cursive;
     }
+    .p-flex {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .p-flex > * {
+        flex: 1;
+    }
+    .flex-0 { flex: none; }
+    .flex-1 { flex: 1; }
+    .flex-2 { flex: 2; }
+    .flex-3 { flex: 3; }
+    .flex-4 { flex: 4; }
+    .flex-5 { flex: 5; }
+    .flex-6 { flex: 6; }
+    .flex-7 { flex: 7; }
+    .flex-8 { flex: 8; }
+    .flex-9 { flex: 9; }
+    .flex-10 { flex: 10; }
+    .flex-11 { flex: 11; }
+    .flex-12 { flex: 12; }
 </style>
