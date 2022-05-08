@@ -9,16 +9,14 @@
 </template>
 
 <script>
-    import Header from './layout/Header.vue'
-    import Menu from './layout/Menu.vue'
-    import HomePage from './views/HomePage.vue'
+    import Header from './views/layout/Header.vue'
+    import Menu from './views/layout/Menu.vue'
 
     export default {
         name: 'App',
         components: {
             Header,
             Menu,
-            HomePage
         }
     }
 </script>

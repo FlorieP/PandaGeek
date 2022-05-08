@@ -13,10 +13,25 @@
         <div class="p-header-title p-audiowide">
             PandaGeek
         </div>
+        <IconButton
+            icon="fa-user-plus"
+            color="white"
+            @click="handleLoginClick()"
+            v-if="!isLogged"
+        />
+        <IconButton
+            icon="fa-user-astronaut"
+            color="white"
+            @click="handleProfileClick()"
+            v-if="isLogged"
+        />
     </div>
 </template>
 
 <script>
+    //Importation Getters / State
+    import { mapGetters } from "vuex"; 
+    //Importation composants vue
     import IconButton from '../ui/IconButton.vue'
 
     export default {
@@ -24,12 +39,23 @@
         components: {
             IconButton
         },
+        computed: {
+            ...mapGetters(
+                "profile", ["isLogged"]
+            ),
+        },
         methods: {
             handleMenuClick: function () {
                 this.$store.dispatch("menu/toggle")
             },
             handleHomeClick: function () {
                 this.$router.push("/");
+            },
+            handleLoginClick: function () {
+                this.$router.push("/login");
+            },
+            handleProfileClick: function () {
+                this.$router.push("/profile");
             },
 
         },

@@ -4,7 +4,7 @@ const state = () => ({
 })
 
 const actions = {
-
+    //Permet l'affichage ou non du Menu
     toggle ({ state, commit }) {
         commit('setOpen', !state.open)
         return
@@ -13,11 +13,7 @@ const actions = {
 }
 
 const mutations = {
-
-    setField (state, {field, value}) {
-        state[field] = value
-    },
-
+    //Permet la maj du status d'open dans state
     setOpen (state, open) {
         state.open = open;
     }
