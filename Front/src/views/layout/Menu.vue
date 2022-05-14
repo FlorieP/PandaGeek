@@ -27,6 +27,6 @@ export default {
 <style scoped>
     .p-menu {
         padding: 10px;
-        background-color: lightgray;
+        background-color: #eceff1;
     }
 </style>

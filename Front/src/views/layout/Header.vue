@@ -2,7 +2,7 @@
     <div class="p-header">
         <IconButton
             icon="fa-bars"
-            color="white"
+            color="black"
             @click="handleMenuClick()"
         />
         <IconButton
@@ -66,13 +66,13 @@
 <style scoped>
     .p-header {
         padding: 10px;
-        background-color: rebeccapurple;
-        color: white;
+        background-color: #4DD0E1;
+        color: black;
         display: flex;
         align-items: center;
     }
     .p-header-title {
-        color: white;
+        color: black;
         padding: 0px 10px;
         font-size: 1.75em;
         text-align: center;
