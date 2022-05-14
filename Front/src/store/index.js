@@ -1,16 +1,18 @@
 import { createStore } from 'vuex'
 import menu from './modules/ui/menu.js'
 import profile from './modules/profile.js'
+import theme from './modules/theme.js'
 
 // Create a new store instance.
 const store = createStore({
     modules: {
         menu,
-        profile
+        profile,
+        theme,
     },
     state () {
         return {
-            initialized : false
+            initialized : false,
         }
     },
 })

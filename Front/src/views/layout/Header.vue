@@ -7,7 +7,7 @@
         />
         <IconButton
             icon="fa-home"
-            color="white"
+            color="black"
             @click="handleHomeClick()"
         />
         <div class="p-header-title p-audiowide">
@@ -15,13 +15,13 @@
         </div>
         <IconButton
             icon="fa-user-plus"
-            color="white"
+            color="black"
             @click="handleLoginClick()"
             v-if="!isLogged"
         />
         <IconButton
             icon="fa-user-astronaut"
-            color="white"
+            color="black"
             @click="handleProfileClick()"
             v-if="isLogged"
         />
