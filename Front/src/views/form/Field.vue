@@ -4,8 +4,8 @@
         <!-- Input -->
         <input
             v-if="kind == 'input'"
-            v-model="value"
 
+            :value="getValue"
             :type="[type]"
             :placeholder="[placeholder]"
             :class="[
@@ -15,6 +15,7 @@
 
             @click="handleInputFocus()"
             @blur="handleInputBlur()"
+            @input="setValue"
         />
 
         <!-- Select -->
@@ -25,33 +26,15 @@
 </template>
 
 <script>
-    // let self = '';
+     import { mapState } from "vuex";
+
+    let self = '';
 
     export default {
         name: 'Field',
 
-        created() {
-
-            // On chope la valeur au bout du "savePath" dans l'arborescence du store pour la recopier dans le state "value"
-            // ---
-
-            if (this.savePath && this.savePath.length > 0) {
-                let loadTarget = this.$store.state;
-                for (const idxPath in this.savePath) {
-                    var target = this.savePath[idxPath];
-                    if (idxPath == this.savePath.length - 1) {
-                        const value = loadTarget[target];
-                        this.value = value;
-                    } else {
-                        loadTarget = loadTarget[target];
-                    }
-                }
-            }
-        },
-
         data: function () {
             return {
-                value: '',
                 focused: false,
             }
         },
@@ -78,8 +61,8 @@
                 default: 'primary', // primary, secondary, ...
             },
             savePath: {
-                type: String,
-                default: '',
+                type: Array,
+                default: [],
             },
         },
 
@@ -95,10 +78,26 @@
                 return (this.color) ? this.color : 'black';
             },
 
-            inputValue() {
-                return this.value;
+            getValue() {
+
+                // VB : Petit algo pour choper la valeur à afficher dans l'input en parcourant le store à partir de la racine
+                // Ex : savePath = ['playground', 'test_input'] -> this.$store.playground.test_input
+
+                if (this.savePath && this.savePath.length > 0) {
+                    let loadTarget = this.$store.state;
+                    for (const idxPath in this.savePath) {
+                        var target = this.savePath[idxPath];
+                        if (idxPath == this.savePath.length - 1) {
+                            return loadTarget[target];
+                        } else {
+                            loadTarget = loadTarget[target];
+                        }
+                    }
+                }
+                return '';
             },
 
+            ...mapState([self.savePath]),
         },
 
         methods: {
@@ -109,12 +108,20 @@
 
             handleInputBlur: function () {
                 this.focused = false;
+            },
+
+            // -
+
+            setValue(e) {
+                const value = e.target.value;
+
+                // VB : Presque le même algo que dans getValue, mais cette fois pour mettre à jour la valeur
 
                 let saveTarget = this.$store.state;
                 for (const idxPath in this.savePath) {
                     var target = this.savePath[idxPath];
                     if (idxPath == this.savePath.length - 1) {
-                        saveTarget[target] = this.value;
+                        saveTarget[target] = value;
                     } else {
                         try {
                             saveTarget[target];
@@ -129,11 +136,10 @@
             },
         },
 
-        // beforeCreate() {
-
-        //     // VB : Cette diablerie sert à pouvoir accéder aux props dans computed (pour info, on s'en sert par pour l'instant)
-        //     self = this;
-        // },
+        beforeCreate() {
+            // VB : Cette diablerie sert à pouvoir accéder aux props dans computed (pour info, on s'en sert par pour l'instant)
+            self = this;
+        },
     }
 </script>
 
