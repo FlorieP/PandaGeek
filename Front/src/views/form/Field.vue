@@ -5,7 +5,8 @@
         <input
             :class="[
                 'p-input',
-                variant
+                variant,
+                className, 
             ]"
             v-if="kind == 'input'"
             :type="[type]"
@@ -56,6 +57,10 @@
             color: {
                 type: String,
                 default: 'primary', // primary, secondary, ...
+            },
+            className: {
+                type: String,
+                dafault: "",
             }
         },
 
@@ -84,7 +89,10 @@
     }
 </script>
 
-<style scoped>
+<style>
+    .p-field {
+        flex: 1;
+    }
 
     /* Input */
 
@@ -95,11 +103,12 @@
         background: white;
         font-weight: 500;
         font-size: 16px;
-        flex: 1;
+        width: 100%;
         min-width: 100px;
         color: black;
         border: 2px solid transparent;
         outline: none;
+        box-sizing: border-box;
     }
 
     .p-input.outlined {

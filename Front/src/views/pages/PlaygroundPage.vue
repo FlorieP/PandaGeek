@@ -26,11 +26,74 @@
         </Row>
 
         <h2 class="p-playground-title">Button</h2>
-        <!-- TODO : Button -->
+        <Row class="p-playground-card">
+            <Column class="p-playground-card">
+                <div class="p-playground-subtitle">Text</div>
+                <Button
+                    variant="text"
+                    color="primary"
+                >
+                Full Primary
+                </Button>
+                <Button
+                    variant="text"
+                    color="secondary"
+                >
+                Full Secondary
+                </Button>
+                <Button
+                    variant="text"
+                    color="#BA68C8"
+                >
+                Full Custom
+                </Button>
+            </Column>
+            <Column class="p-playground-card">
+                <div class="p-playground-subtitle">Contained</div>
+                <Button
+                    variant="contained"
+                    color="primary"
+                >
+                Full Primary
+                </Button>
+                <Button
+                    variant="contained"
+                    color="secondary"
+                >
+                Full Secondary
+                </Button>
+                <Button
+                    variant="contained"
+                    color="#BA68C8"
+                >
+                Full Custom
+                </Button>
+            </Column>
+            <Column class="p-playground-card">
+                <div class="p-playground-subtitle">Outlined</div>
+                <Button
+                    variant="outlined"
+                    color="primary"
+                >
+                Outlined Primary
+                </Button>
+                <Button
+                    variant="outlined"
+                    color="secondary"
+                >
+                Outlined Secondary
+                </Button>
+                <Button
+                    variant="outlined"
+                    color="#BA68C8"
+                >
+                Outlined Custom
+                </Button>
+            </Column>
+        </Row>
 
         <h2 class="p-playground-title">Fields</h2>
         <Column>
-
             <div class="p-playground-subtitle">Input</div>
             <Row class="p-playground-card">
                 <Field
@@ -42,13 +105,13 @@
                     placeholder="outlined primary"
                     type="text"
                     variant="outlined"
-                    color="primary"
+                    color="secondary"
                 />
                 <Field
                     placeholder="outlined secondary"
                     type="text"
                     variant="outlined"
-                    color="secondary"
+                    color="primary"
                 />
                 <Field
                     placeholder="outlined custom color"
@@ -70,6 +133,7 @@
     import Field from '../form/Field.vue'
     import Row from '../form/Row.vue'
     import Column from '../form/Column.vue'
+    import Button from '../ui/Button.vue'
 
     export default {
         name: 'PlaygroungPage',
@@ -77,7 +141,9 @@
         components: {
             IconButton,
             Field,
-            Row
+            Button,
+            Row,
+            Column
         },
 
         data: function () {

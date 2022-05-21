@@ -16,13 +16,29 @@
       </p>
       <!----- Formulaire ----->
       <div class="p-form" v-if="mode == 'signup'">
-        <input v-model="pseudo" class="p-form-input" type="text" placeholder="Pseudo"/>
+        <Field
+          className="p-login-field"
+          placeholder="Pseudo"
+          type="text"
+          variant="flat"
+        />
       </div>
       <div class="p-form">
-        <input v-model="email" class="p-form-input" type="email" placeholder="Adresse mail"/>
+        <Field
+          className="p-login-field"
+          placeholder="Email"
+          type="email"
+          variant="flat"
+        />
       </div>
       <div class="p-form">
-        <input v-model="password" class="p-form-input" type="password" placeholder="Mot de passe"/>
+        <Field
+          className="p-login-field"
+
+          placeholder="Mot de passe"
+          type="passeword"
+          variant="flat"
+        />
       </div>
       <div class="p-form message_error" v-if="mode == 'login' && status == 'error_login'">
         <p>Adresse mail et/ou mot de passe invalide</p>
@@ -32,14 +48,26 @@
       </div>
       <!----- Boutons ----->
       <div class="p-form">
-        <button @click="login()" class="button" :class="{ 'button--disabled': !validatedFields }" v-if="mode == 'login'">
-          <span v-if="status == 'loading'">Connexion en cours</span>
-          <span v-else>Se connecter</span>
-        </button>
-        <button @click="signup()" class="button" :class="{ 'button--disabled': !validatedFields }" v-else>
+        <Button
+          @click="login()"
+          variant= "contained"
+          color="secondary"
+          :className="{ 'button--disabled': !validatedFields }"
+          v-if="mode == 'login'"
+        >
+        <span v-if="status == 'loading'">Connexion en cours</span>
+        <span v-else>Se connecter</span>
+        </Button>
+        <Button
+          @click="signup()"
+          variant= "contained"
+          color="secondary"
+          :className="{ 'button--disabled': !validatedFields }"
+          v-if="mode == 'signup'"
+        >
           <span v-if="status == 'loading'">Création en cours</span>
           <span v-else>Créer mon compte</span>
-        </button>
+        </Button>
       </div>
     </div>
   </div>
@@ -48,9 +76,19 @@
 <script>
 //Importation module Vuex
 import { mapState } from 'vuex'
+import Field from '../form/Field.vue'
+import Button from '../ui/Button.vue';
 
 export default {
+  name: 'PlaygroungPage',
+
+  components: {
+    Field,
+    Button,
+  },
+  
   data: function () {
+    
     //déclération de variable
     return {
       mode: "login",
@@ -125,7 +163,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .p-body {
   display: flex;
   align-items: center;
@@ -136,7 +174,6 @@ export default {
   max-width: 100%;
   width: 400px;
   background: #ffecb3;
-  /*background: #eceff1;*/
   border-radius: 16px;
   padding: 20px 30px;
 }
@@ -150,17 +187,6 @@ export default {
   color: #424242;
   font-weight: 500;
 }
-.button {
-  background: #ffb74d;
-  color: black;
-  border-radius: 8px;
-  font-weight: 800;
-  font-size: 15px;
-  border: none;
-  width: 100%;
-  padding: 16px;
-  transition: 0.4s background-color;
-}
 .p-card-action {
   color: #ffb74d;
   text-decoration: underline;
@@ -168,46 +194,21 @@ export default {
 .p-card-action:hover {
   cursor: pointer;
 }
-.button:hover {
-  cursor: pointer;
-  background: #ffb74d;
-}
-.button {
-  background: white;
-  color: #424242;
-}
-.button:hover {
-  background: #ffb74d;
-}
-
 .p-form {
   display: flex;
   margin: 16px 0px;
-  gap: 16px;
   flex-wrap: wrap;
+  flex: 1;
 }
-
+.p-login-field {
+  padding: 16px;
+}
 .message_error {
   color: #b71c1c;
   justify-content: center;
   font-size: 13px;
 }
 
-.p-form-input {
-  padding: 8px;
-  border: none;
-  border-radius: 8px;
-  background: white;
-  font-weight: 500;
-  font-size: 16px;
-  flex: 1;
-  min-width: 100px;
-  color: black;
-}
-
-.p-form-input::placeholder {
-  color: #aaaaaa;
-}
 /******************** RESPONSIVE ********************/
 /******** MOBILE ********/
 @media screen and (max-width: 505px){
