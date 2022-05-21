@@ -3,17 +3,20 @@
 
         <!-- Input -->
         <input
+            v-if="kind == 'input'"
+
+            :value="getValue"
+            :type="[type]"
+            :placeholder="[placeholder]"
             :class="[
                 'p-input',
                 variant,
                 className, 
             ]"
-            v-if="kind == 'input'"
-            :type="[type]"
-            :placeholder="[placeholder]"
 
             @click="handleInputFocus()"
             @blur="handleInputBlur()"
+            @input="setValue"
         />
 
         <!-- Select -->
@@ -24,12 +27,12 @@
 </template>
 
 <script>
+     import { mapState } from "vuex";
+
+    let self = '';
+
     export default {
         name: 'Field',
-
-        mounted() {
-            console.log(this.color);
-        },
 
         data: function () {
             return {
@@ -62,9 +65,15 @@
                 type: String,
                 dafault: "",
             }
+            },
+            savePath: {
+                type: Array,
+                default: [],
+            },
         },
 
         computed: {
+
             focusedColor() {
                 if (this.color == 'primary') {
                     return this.$store.state.theme.colors.primary;
@@ -73,18 +82,69 @@
                     return this.$store.state.theme.colors.secondary;
                 }
                 return (this.color) ? this.color : 'black';
-            }
+            },
+
+            getValue() {
+
+                // VB : Petit algo pour choper la valeur à afficher dans l'input en parcourant le store à partir de la racine
+                // Ex : savePath = ['playground', 'test_input'] -> this.$store.playground.test_input
+
+                if (this.savePath && this.savePath.length > 0) {
+                    let loadTarget = this.$store.state;
+                    for (const idxPath in this.savePath) {
+                        var target = this.savePath[idxPath];
+                        if (idxPath == this.savePath.length - 1) {
+                            return loadTarget[target];
+                        } else {
+                            loadTarget = loadTarget[target];
+                        }
+                    }
+                }
+                return '';
+            },
+
+            ...mapState([self.savePath]),
         },
 
         methods: {
+
             handleInputFocus: function () {
-                console.log('handleInputFocus');
                 this.focused = true;
             },
+
             handleInputBlur: function () {
-                console.log('handleInputBlur');
                 this.focused = false;
             },
+
+            // -
+
+            setValue(e) {
+                const value = e.target.value;
+
+                // VB : Presque le même algo que dans getValue, mais cette fois pour mettre à jour la valeur
+
+                let saveTarget = this.$store.state;
+                for (const idxPath in this.savePath) {
+                    var target = this.savePath[idxPath];
+                    if (idxPath == this.savePath.length - 1) {
+                        saveTarget[target] = value;
+                    } else {
+                        try {
+                            saveTarget[target];
+                        } catch(err) {
+                            if (!saveTarget.hasOwnProperty(target)) {
+                                saveTarget[target] = {};
+                            }
+                        }
+                        saveTarget = saveTarget[target];
+                    }
+                }
+            },
+        },
+
+        beforeCreate() {
+            // VB : Cette diablerie sert à pouvoir accéder aux props dans computed (pour info, on s'en sert par pour l'instant)
+            self = this;
         },
     }
 </script>
@@ -104,7 +164,7 @@
         font-weight: 500;
         font-size: 16px;
         width: 100%;
-        min-width: 100px;
+        min-width: 40px;
         color: black;
         border: 2px solid transparent;
         outline: none;
