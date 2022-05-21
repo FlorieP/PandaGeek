@@ -27,7 +27,6 @@
 </template>
 
 <script>
-     import { mapState } from "vuex";
 
     let self = '';
 
@@ -89,9 +88,9 @@
                 // Ex : savePath = ['playground', 'test_input'] -> this.$store.playground.test_input
 
                 if (this.savePath && this.savePath.length > 0) {
-                    let loadTarget = this.$store.state;
+                    let loadTarget = this.$store.state; // On part de la racine
                     for (const idxPath in this.savePath) {
-                        var target = this.savePath[idxPath];
+                        var target = this.savePath[idxPath]; // Dans l'exemple ça donnera 'playground', puis 'test_input'
                         if (idxPath == this.savePath.length - 1) {
                             return loadTarget[target];
                         } else {
@@ -102,7 +101,6 @@
                 return '';
             },
 
-            ...mapState([self.savePath]),
         },
 
         methods: {
