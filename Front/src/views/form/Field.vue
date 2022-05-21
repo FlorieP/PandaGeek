@@ -64,7 +64,6 @@
             className: {
                 type: String,
                 dafault: "",
-            }
             },
             savePath: {
                 type: Array,
