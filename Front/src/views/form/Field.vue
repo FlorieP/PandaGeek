@@ -3,13 +3,15 @@
 
         <!-- Input -->
         <input
+            v-if="kind == 'input'"
+            v-model="value"
+
+            :type="[type]"
+            :placeholder="[placeholder]"
             :class="[
                 'p-input',
                 variant
             ]"
-            v-if="kind == 'input'"
-            :type="[type]"
-            :placeholder="[placeholder]"
 
             @click="handleInputFocus()"
             @blur="handleInputBlur()"
@@ -23,15 +25,33 @@
 </template>
 
 <script>
+    // let self = '';
+
     export default {
         name: 'Field',
 
-        mounted() {
-            console.log(this.color);
+        created() {
+
+            // On chope la valeur au bout du "savePath" dans l'arborescence du store pour la recopier dans le state "value"
+            // ---
+
+            if (this.savePath && this.savePath.length > 0) {
+                let loadTarget = this.$store.state;
+                for (const idxPath in this.savePath) {
+                    var target = this.savePath[idxPath];
+                    if (idxPath == this.savePath.length - 1) {
+                        const value = loadTarget[target];
+                        this.value = value;
+                    } else {
+                        loadTarget = loadTarget[target];
+                    }
+                }
+            }
         },
 
         data: function () {
             return {
+                value: '',
                 focused: false,
             }
         },
@@ -56,10 +76,15 @@
             color: {
                 type: String,
                 default: 'primary', // primary, secondary, ...
-            }
+            },
+            savePath: {
+                type: String,
+                default: '',
+            },
         },
 
         computed: {
+
             focusedColor() {
                 if (this.color == 'primary') {
                     return this.$store.state.theme.colors.primary;
@@ -68,19 +93,47 @@
                     return this.$store.state.theme.colors.secondary;
                 }
                 return (this.color) ? this.color : 'black';
-            }
+            },
+
+            inputValue() {
+                return this.value;
+            },
+
         },
 
         methods: {
+
             handleInputFocus: function () {
-                console.log('handleInputFocus');
                 this.focused = true;
             },
+
             handleInputBlur: function () {
-                console.log('handleInputBlur');
                 this.focused = false;
+
+                let saveTarget = this.$store.state;
+                for (const idxPath in this.savePath) {
+                    var target = this.savePath[idxPath];
+                    if (idxPath == this.savePath.length - 1) {
+                        saveTarget[target] = this.value;
+                    } else {
+                        try {
+                            saveTarget[target];
+                        } catch(err) {
+                            if (!saveTarget.hasOwnProperty(target)) {
+                                saveTarget[target] = {};
+                            }
+                        }
+                        saveTarget = saveTarget[target];
+                    }
+                }
             },
         },
+
+        // beforeCreate() {
+
+        //     // VB : Cette diablerie sert à pouvoir accéder aux props dans computed (pour info, on s'en sert par pour l'instant)
+        //     self = this;
+        // },
     }
 </script>
 
@@ -96,7 +149,7 @@
         font-weight: 500;
         font-size: 16px;
         flex: 1;
-        min-width: 100px;
+        min-width: 40px;
         color: black;
         border: 2px solid transparent;
         outline: none;

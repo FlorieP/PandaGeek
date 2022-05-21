@@ -37,24 +37,28 @@
                     placeholder="flat"
                     type="text"
                     variant="flat"
+                    :savePath="['playground', 'test_input']"
                 />
                 <Field
                     placeholder="outlined primary"
                     type="text"
                     variant="outlined"
                     color="primary"
+                    :savePath="['playground', 'test_input']"
                 />
                 <Field
                     placeholder="outlined secondary"
                     type="text"
                     variant="outlined"
                     color="secondary"
+                    :savePath="['playground', 'test_input']"
                 />
                 <Field
                     placeholder="outlined custom color"
                     type="text"
                     variant="outlined"
                     color="#BA68C8"
+                    :savePath="['playground', 'test_input']"
                 />
             </Row>
 
