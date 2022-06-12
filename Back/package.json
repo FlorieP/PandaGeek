@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/FlorieP/PandaGeek#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
     "express": "^4.17.3",
     "nodemon": "^2.0.15",
     "sequelize": "^6.20.1",
