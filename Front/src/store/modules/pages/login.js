@@ -14,8 +14,8 @@ const getters = {
 const actions = {
     //Fonction d'inscription de l'utilisateur
     signup ({ state, commit }) {
-        console.log(state)
-        console.log(commit)
+        console.log('state:' + state )
+        console.log('commit:' + commit )
        // return new Promise ((resolve, reject) => {
        //     axios.post('http://localhost:3000/api/user/signup',  )
        // })

@@ -3,11 +3,14 @@
 
         <!-- Button -->
         <button
-            :class="[
+            :class ="[
                 'p-button',
                 variant,
-                className, 
+                className,
+                {'enabled': !disabled},
+                {'disabled': disabled}
             ]"
+            :id = "id"
         ><slot /></button>
     </div>
 </template>
@@ -17,7 +20,6 @@
         name: 'Button',
 
         mounted() {
-            console.log(this.color);
         },
 
         data: function () {
@@ -37,7 +39,15 @@
             },
             className: {
                 type: String,
-                dafault: "",
+                default: "",
+            },
+            disabled: {
+                type: Boolean,
+                default: false,
+            },
+            id: {
+                type: String, 
+                default: "",
             }
         },
 
@@ -100,14 +110,17 @@
     /* Contained Button */
 
     .p-button.contained {
-        background: white;
-        color: #424242;
         border-radius: 8px;
         border: none;
+        color: #424242;
         padding: 18px;
     }
 
-    .p-button.contained:hover {
+    .p-button.disabled {
+        background: white;
+    }
+
+    .p-button.enabled {
         cursor: pointer;
         background: v-bind(focusedColor);      
     }

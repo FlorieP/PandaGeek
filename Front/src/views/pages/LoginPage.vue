@@ -51,24 +51,24 @@
       <!----- Boutons ----->
       <div class="p-form">
         <Button
+          id="btn-login"
           @click="login()"
           variant= "contained"
           color="secondary"
-          :className="{ 'button--disabled': !validatedFields }"
+          :disabled="!validatedFields"
           v-if="mode == 'login'"
         >
-        <span v-if="status == 'loading'">Connexion en cours</span>
-        <span v-else>Se connecter</span>
+        <span>Se connecter</span>
         </Button>
         <Button
+          id="btn-signup"
           @click="signup()"
           variant= "contained"
           color="secondary"
-          :className="{ 'button--disabled': !validatedFields }"
+          :disabled="!validatedFields"
           v-if="mode == 'signup'"
         >
-          <span v-if="status == 'loading'">Création en cours</span>
-          <span v-else>Créer mon compte</span>
+          <span>Créer mon compte</span>
         </Button>
       </div>
     </div>
@@ -132,9 +132,10 @@ export default {
     //Fonction d'inscription de l'utilisateur
     signup: function () {
       const self = this;
+      console.log("entrée signup")
       this.$store.dispatch('login/signup')
       .then(response => {
-        console.log(response);
+        console.log('signup' +response);
         self.login();
       }, error => {
         console.log(error.message)
@@ -143,9 +144,10 @@ export default {
     //Fonction de connexion de l'utilisateur
     login: function () {
       const self = this.$router;
+      console.log("entrée login")
       this.$store.dispatch('login/login')
       .then(response => {
-        console.log(response);
+        console.log('login' + response);
         // self.push('/accueil');
       }, error => {
         console.log(error.message)
