@@ -11,6 +11,8 @@
                 {'disabled': disabled}
             ]"
             :id = "id"
+            :disabled= "disabled"
+            @click="handleClick()"
         ><slot /></button>
     </div>
 </template>
@@ -48,7 +50,11 @@
             id: {
                 type: String, 
                 default: "",
-            }
+            },
+            onClick: {
+                type: Object,
+                default: null,
+            },
         },
 
         computed: {
@@ -64,14 +70,17 @@
         },
 
         methods: {
-            handleInputFocus: function () {
-                console.log('handleInputFocus');
+            handleInputFocus: function() {
                 this.focused = true;
             },
-            handleInputBlur: function () {
-                console.log('handleInputBlur');
+            handleInputBlur: function() {
                 this.focused = false;
             },
+            handleClick: function() {
+                if (this.onClick) {
+                    this.onClick();
+                }
+            }
         },
     }
 </script>
@@ -118,6 +127,7 @@
 
     .p-button.disabled {
         background: white;
+        pointer-events: none !important;
     }
 
     .p-button.enabled {
