@@ -131,27 +131,23 @@ export default {
     },
     //Fonction d'inscription de l'utilisateur
     signup: function () {
-      // const self = this;
-      console.log("entrée signup")
-      // this.$store.dispatch('login/signup')
-      // .then(response => {
-      //   console.log('signup' +response);
-      //   self.login();
-      // }, error => {
-      //   console.log(error.message)
-      // })
+       const self = this;
+       this.$store.dispatch('login/signup')
+       .then(response => {
+         self.login();
+       }, error => {
+         console.log(error.message)
+       })
     },
     //Fonction de connexion de l'utilisateur
     login: function () {
-      // const self = this.$router;
-      console.log("entrée login")
-      // this.$store.dispatch('login/login')
-      // .then(response => {
-      //   console.log('login' + response);
-      //   // self.push('/accueil');
-      // }, error => {
-      //   console.log(error.message)
-      // })
+       const self = this.$router;
+       this.$store.dispatch('login/login')
+       .then(response => {
+         // self.push('/accueil');
+       }, error => {
+         console.log(error.message)
+      })
     },
   },
 };
