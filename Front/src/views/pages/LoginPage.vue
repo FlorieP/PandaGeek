@@ -21,6 +21,7 @@
           placeholder="Pseudo"
           type="text"
           variant="flat"
+          
         />
       </div>
       <div class="p-form">
@@ -29,15 +30,16 @@
           placeholder="Email"
           type="email"
           variant="flat"
+          
         />
       </div>
       <div class="p-form">
         <Field
           className="p-login-field"
-
           placeholder="Mot de passe"
           type="passeword"
           variant="flat"
+          
         />
       </div>
       <div class="p-form message_error" v-if="mode == 'login' && status == 'error_login'">
@@ -91,10 +93,7 @@ export default {
     
     //déclération de variable
     return {
-      mode: "login",
-      pseudo: "",
-      email: "",
-      password: "",
+      mode: "login"
     };
   },
   computed: {
@@ -102,16 +101,16 @@ export default {
     validatedFields: function () {
       if (this.mode == "signup") {
         if (
-          this.pseudo != "" &&
-          this.email != "" &&
-          this.password != ""
+          this.$store.login.pseudo != "" &&
+          this.$store.login.email != "" &&
+          this.$store.login.password != ""
         ) {
           return true;
         } else {
           return false;
         }
       } else {
-        if (this.email != "" && this.password != "") {
+        if (this.$store.login.email != "" && this.$store.login.password != "") {
           return true;
         } else {
           return false;
@@ -133,11 +132,7 @@ export default {
     //Fonction d'inscription de l'utilisateur
     signup: function () {
       const self = this;
-      this.$store.dispatch('signup',  {
-        email: this.email,
-        pseudo: this.pseudo,
-        password: this.password
-      })
+      this.$store.dispatch('login/signup')
       .then(response => {
         console.log(response);
         self.login();
@@ -148,10 +143,7 @@ export default {
     //Fonction de connexion de l'utilisateur
     login: function () {
       const self = this.$router;
-      this.$store.dispatch('login',  {
-        email: this.email,
-        password: this.password
-      })
+      this.$store.dispatch('login/login')
       .then(response => {
         console.log(response);
         self.push('/accueil');

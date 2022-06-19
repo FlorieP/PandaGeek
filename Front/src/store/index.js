@@ -1,7 +1,8 @@
 import { createStore } from 'vuex'
 import menu from './modules/ui/menu.js'
 import playground from './modules/pages/playground.js'
-import profile from './modules/profile.js'
+import profile from './modules/pages/profile.js'
+import login from './modules/pages/login'
 import theme from './modules/theme.js'
 
 
@@ -18,10 +19,11 @@ const store = createStore({
         // -
 
         playground,
+        login,
+        profile,
 
         // -
 
-        profile,
         theme,
     },
 
