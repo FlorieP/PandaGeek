@@ -21,7 +21,7 @@
           placeholder="Pseudo"
           type="text"
           variant="flat"
-          
+          :savePath="['login', 'pseudo']"
         />
       </div>
       <div class="p-form">
@@ -30,16 +30,16 @@
           placeholder="Email"
           type="email"
           variant="flat"
-          
+          :savePath="['login', 'email']"
         />
       </div>
       <div class="p-form">
         <Field
           className="p-login-field"
           placeholder="Mot de passe"
-          type="passeword"
+          type="password"
           variant="flat"
-          
+          :savePath="['login', 'password']"
         />
       </div>
       <div class="p-form message_error" v-if="mode == 'login' && status == 'error_login'">
@@ -101,16 +101,16 @@ export default {
     validatedFields: function () {
       if (this.mode == "signup") {
         if (
-          this.$store.login.pseudo != "" &&
-          this.$store.login.email != "" &&
-          this.$store.login.password != ""
+          this.$store.state.login.pseudo != "" &&
+          this.$store.state.login.email != "" &&
+          this.$store.state.login.password != ""
         ) {
           return true;
         } else {
           return false;
         }
       } else {
-        if (this.$store.login.email != "" && this.$store.login.password != "") {
+        if (this.$store.state.login.email != "" && this.$store.state.login.password != "") {
           return true;
         } else {
           return false;
@@ -146,7 +146,7 @@ export default {
       this.$store.dispatch('login/login')
       .then(response => {
         console.log(response);
-        self.push('/accueil');
+        // self.push('/accueil');
       }, error => {
         console.log(error.message)
       })
