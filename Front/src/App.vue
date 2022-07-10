@@ -50,15 +50,21 @@
     .p-audiowide {
         font-family: 'Audiowide', cursive;
     }
-    .p-flex {
+    .p-flex, .p-flex-spaced {
         display: flex;
         flex-direction: row;
         align-items: center;
     }
+
+    .p-flex-spaced > *:not(:last-child) {
+        flex: 1;
+        margin: 10px;
+    }
+
     .p-flex > * {
         flex: 1;
     }
-    .flex-0 { flex: none; }
+    .flex-0 { flex: none !important; }
     .flex-1 { flex: 1; }
     .flex-2 { flex: 2; }
     .flex-3 { flex: 3; }

@@ -23,6 +23,7 @@
                     icon="fa-times"
                     color="black"
                     class="btn-close-popup flex-0"
+                    v-if="showClose"
                     @click="handleCloseClick()"
                 />
             </div>
@@ -36,6 +37,7 @@
                 class="p-popup-footer"
                 v-if="showFooter"
             >
+                <!-- Slot avec nom pour personnaliser -->
                 <slot name="footer"></slot>
             </div>
         </div>
@@ -70,6 +72,10 @@
             variant: {
                 type: String,
                 default: 'dialog', // dialog, modal
+            },
+            showClose: {
+                type: Boolean,
+                default: true,
             },
             showFooter: {
                 type: Boolean,
@@ -109,6 +115,7 @@
 
         background-color: rgba(111, 126, 140, 0.2);
         -webkit-backdrop-filter: blur(4px);
+        backdrop-filter: blur(4px);
 
         display: flex;
         align-items: center;
@@ -135,6 +142,10 @@
         padding: 20px 30px;
     }
 
+    .p-popup.modal .p-popup-title {
+        text-align: center;
+    }
+
     .btn-close-popup {
         position: absolute;
         top: 0px;
@@ -145,6 +156,10 @@
         padding: 0px 30px 20px 30px;
     }
 
+    .p-popup.modal .p-popup-content {
+        text-align: center;
+    }
+
     .p-popup-footer {
         display: flex;
         align-items: center;
@@ -153,6 +168,10 @@
 
     .p-popup-footer > *:not(:last-child) {
         margin-right: 10px;
+    }
+
+    .p-popup.modal .p-popup-footer  {
+        justify-content: space-around;
     }
 
 </style>

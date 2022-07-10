@@ -1,14 +1,21 @@
 <template>
-    <div class="p-box-button">
+    <div 
+        :class="[
+            'p-box-button',
+            rootClassName
+        ]"
+        >
 
         <!-- Button -->
         <button
             :class ="[
                 'p-button',
-                variant,
+                variant, 
+                size,
                 className,
                 {'enabled': !disabled},
-                {'disabled': disabled}
+                {'disabled': disabled},
+                {'fullWidth' : fullWidth}
             ]"
             :id = "id"
             :disabled= "disabled"
@@ -31,6 +38,10 @@
         },
 
         props: {
+            rootClassName: {
+                type: String,
+                default: '',
+            },
             variant: {
                 type: String,
                 default: 'contained', // text, contained, outlined, ...
@@ -38,6 +49,14 @@
             color: {
                 type: String,
                 default: 'secondary', // primary, secondary, ...
+            },
+            size: {
+                type: String,
+                default: 'normal', // normal, small, large ...
+            },
+            fullWidth: {
+                type: Boolean,
+                default: true, 
             },
             className: {
                 type: String,
@@ -95,10 +114,17 @@
     .p-button {
         color: #424242;
         font-weight: 800;
-        width: 100%;
         padding: 16px;
         transition: 0.4s background-color;
         margin: 5px 0px;
+    }
+
+    .p-button.small {
+        padding: 5px;
+    }
+
+    .p-button.fullWidth {
+        width: 100%;
     }
 
     /* Text Button */
@@ -123,6 +149,10 @@
         border: none;
         color: #424242;
         padding: 18px;
+    }
+
+    .p-button.contained.small {
+        padding: 7px 10px;
     }
 
     .p-button.disabled {

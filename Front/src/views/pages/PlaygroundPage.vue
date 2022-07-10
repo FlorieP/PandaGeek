@@ -162,14 +162,12 @@
     >
         Contenu popup 1
         <template v-slot:footer>
-            <Button
-                color="default"
-                @click="handleClosePopup('popup1')"
-            >
-                Annuler
-            </Button>
+            <div class="flex-1"></div>
             <Button
                 color="primary"
+                size="small"
+                :fullWidth="false"
+                rootClassName="flex-0"
             >
                 Valider
             </Button>
@@ -179,11 +177,31 @@
     <Popup
         id="popup2"
         title="Modal"
+        variant="modal"
         :showFooter="true"
+        :showClose="false"
     >
         Contenu popup 2
         <template v-slot:footer>
-            Footer !
+            <div class="p-flex-spaced">
+                <Button
+                    color="primary"
+                    size="small"
+                    :fullWidth="false"
+                    rootClassName="flex-0"
+                >
+                    Valider
+                </Button>
+                <Button
+                    color="#cfd8dc"
+                    size="small"
+                    :fullWidth="false"
+                    rootClassName="flex-0"
+                    @click="handleClosePopup('popup2')"
+                >
+                    Annuler
+                </Button>
+            </div>
         </template>
     </Popup>
 
