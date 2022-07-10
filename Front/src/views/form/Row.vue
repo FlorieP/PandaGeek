@@ -25,8 +25,14 @@
         align-items: flex-start;
     }
 
-    .p-row.elastic * {
+    .p-row.elastic > * {
         flex: 1;
+    }
+
+    /* > : enfants directs du parent */
+    /* :not() condition / exception */
+    .p-row.elastic > *:not(:last-child) {
+        margin-right: 10px;
     }
 
 </style>

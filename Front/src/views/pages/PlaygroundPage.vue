@@ -95,7 +95,10 @@
         <h2 class="p-playground-title">Fields</h2>
         <Column>
             <div class="p-playground-subtitle">Input</div>
-            <Row class="p-playground-card">
+            <Row
+                class="p-playground-card"
+                :elastic="true"
+            >
                 <Field
                     placeholder="flat"
                     type="text"
@@ -129,7 +132,61 @@
 
             <div class="p-playground-subtitle">Checkbox</div>
         </Column>
+
+        <h2 class="p-playground-title">Popups</h2>
+        <Row
+            class="p-playground-card"
+            :elastic="true"
+        >
+            <Button
+                variant="contained"
+                color="primary"
+                @click="handleOpenPopup('popup1')"
+            >
+                Dialog
+            </Button>
+            <Button
+                variant="contained"
+                color="secondary"
+                @click="handleOpenPopup('popup2')"
+            >
+                Modal
+            </Button>
+        </Row>
     </p>
+
+    <Popup
+        id="popup1"
+        title="Dialog"
+        :showFooter="true"
+    >
+        Contenu popup 1
+        <template v-slot:footer>
+            <Button
+                color="default"
+                @click="handleClosePopup('popup1')"
+            >
+                Annuler
+            </Button>
+            <Button
+                color="primary"
+            >
+                Valider
+            </Button>
+        </template>
+    </Popup>
+
+    <Popup
+        id="popup2"
+        title="Modal"
+        :showFooter="true"
+    >
+        Contenu popup 2
+        <template v-slot:footer>
+            Footer !
+        </template>
+    </Popup>
+
 </template>
 
 <script>
@@ -138,6 +195,7 @@
     import Row from '../form/Row.vue'
     import Column from '../form/Column.vue'
     import Button from '../ui/Button.vue'
+    import Popup from '../ui/Popup.vue'
 
     export default {
         name: 'PlaygroungPage',
@@ -147,7 +205,8 @@
             Field,
             Button,
             Row,
-            Column
+            Column,
+            Popup
         },
 
         data: function () {
@@ -155,6 +214,15 @@
                 inputValue: '',
             }
         },
+
+        methods: {
+            handleOpenPopup: function(popupId) {
+                this.$store.dispatch('popup/open', popupId);
+            },
+            handleClosePopup: function(popupId) {
+                this.$store.dispatch('popup/close', popupId);
+            },
+        }
     }
 </script>
 

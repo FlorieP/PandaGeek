@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import menu from './modules/ui/menu.js'
+import popup from './modules/ui/popup.js'
 import playground from './modules/pages/playground.js'
 import profile from './modules/pages/profile.js'
 import login from './modules/pages/login'
@@ -14,6 +15,7 @@ const store = createStore({
         // -
 
         menu,
+        popup,
 
         // Pages
         // -

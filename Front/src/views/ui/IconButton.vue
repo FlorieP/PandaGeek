@@ -1,15 +1,29 @@
 <template>
     <div class="p-icon-button">
-        <i :class="['fa-solid', icon]" :style="[iconStyle]"></i>
+        <i :class="[base, icon]" :style="[iconStyle]"></i>
     </div>    
 </template>
 
 <script>
     export default {
-        props: [
-            'icon',
-            'color'
-        ],
+        props: {
+            id: {
+                icon: String,
+                default: "",
+            },
+            base: {
+                type: String,
+                default: 'fa-solid', // fa-solid, fas, far
+            },
+            icon: {
+                type: String,
+                default: "",
+            },
+            color: {
+                type: String,
+                default: "black",
+            },
+        },
         name: 'IconButton',
         computed: {
             iconStyle () {

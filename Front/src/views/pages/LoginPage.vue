@@ -163,7 +163,7 @@ export default {
 .p-card {
   max-width: 100%;
   width: 400px;
-  background: #ffecb3;
+  background-color: #ffecb3;
   border-radius: 16px;
   padding: 20px 30px;
 }
